@@ -2,7 +2,6 @@
   "name": "types-superpowers",
   "version": "1.0.0",
   "description": "",
-  "dependencies": {},
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.5",
@@ -12,9 +11,13 @@
     "typescript": "^3.1.6"
   },
   "scripts": {
-    "test": "mocha -r ts-node/register src/**.specs.ts",
-    "tdd": "mocha -r ts-node/register --watch-extensions ts --watch src/**.specs.ts"
+    "build": "tsc",
+    "lint": "tslint src/**/*.ts",
+    "test": "tsc && tslint src/**/*.ts && mocha -r ts-node/register src/**.specs.[tj]s"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "tslint": "^5.11.0"
+  }
 }
