@@ -3,19 +3,16 @@ function format(zipcode, city) {
 }
 
 function validate(city, zipcode) {
-    return typeof city === "string"
-        && !/[0-9]/.test(city)
-        && typeof zipcode === "string"
+    return !/[0-9]/.test(city)
         && /^[0-9]{5}$/.test(zipcode);
 }
 
 function toHtml(city, zipcode) {
-    if (validate(city, zipcode)) {
-        return "<p>" + format(city, zipcode) + "</p>";
-    } else {
-        // TODO print an error message
-        return "";
+    let formattedAddress = "";
+    if (validate(city, zipcode)) { // TODO add error message when invalid
+        formattedAddress = format(city, zipcode);
     }
+    return "<p>" + formattedAddress + "</p>";
 }
 
 export {toHtml};

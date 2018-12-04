@@ -14,15 +14,12 @@ describe("An address", () => {
         describe("should show an error message when address is invalid", () => {
             for (const invalidCity of [
                 "Paris 13",
-                {},
-                true,
-                undefined,
-                null,
-                123,
+                "P4ris",
             ]) {
 
                 it("because of city (" + invalidCity + ")", () => {
                     expect(toHtml(invalidCity, validZipCode)).to
+                        .match(/<p>.*<\/p>/)
                         .not.contains(invalidCity);
                 });
             }
@@ -30,20 +27,17 @@ describe("An address", () => {
                 "7501",
                 "750190",
                 "75O19",
-                {},
-                true,
-                undefined,
-                null,
-                123,
             ]) {
 
                 it("because of zipcode (" + invalidZipCode + ")", () => {
                     expect(toHtml(validCity, invalidZipCode)).to
+                        .match(/<p>.*<\/p>/)
                         .not.contains(invalidZipCode);
                 });
             }
             it("because of both", () => {
                 expect(toHtml("P4ris", "75O17")).to
+                    .match(/<p>.*<\/p>/)
                     .not.contains("P4ris")
                     .not.contains("75O17");
             });
