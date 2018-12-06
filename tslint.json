@@ -9,6 +9,10 @@
       false,
       "call-signature",
       "property-declaration"
+    ],
+    "no-unnecessary-class": [],
+    "max-classes-per-file": [
+      false
     ]
   },
   "rulesDirectory": []
