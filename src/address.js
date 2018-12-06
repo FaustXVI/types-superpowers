@@ -1,5 +1,5 @@
 function format(zipcode, city) {
-    return zipcode + " " + city;
+    return `${zipcode} ${city}`;
 }
 
 function validate(city, zipcode) {
@@ -12,7 +12,7 @@ function toHtml(city, zipcode) {
     if (validate(city, zipcode)) { // TODO add error message when invalid
         formattedAddress = format(city, zipcode);
     }
-    return "<p>" + formattedAddress + "</p>";
+    return `<p>${formattedAddress}</p>`;
 }
 
 export {toHtml};
