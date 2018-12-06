@@ -8,11 +8,10 @@ function validate(city, zipcode) {
 }
 
 function toHtml(city, zipcode) {
-    let formattedAddress = "";
-    if (validate(city, zipcode)) { // TODO add error message when invalid
-        formattedAddress = format(city, zipcode);
+    if (validate(city, zipcode)) {
+        return `<p>${format(city, zipcode)}</p>`;
     }
-    return `<p>${formattedAddress}</p>`;
+    return "";
 }
 
 export {toHtml};

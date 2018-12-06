@@ -19,7 +19,6 @@ describe("An address", () => {
 
                 it("because of city (" + invalidCity + ")", () => {
                     expect(toHtml(invalidCity, validZipCode)).to
-                        .match(/<p>.*<\/p>/)
                         .not.contains(invalidCity);
                 });
             }
@@ -31,13 +30,11 @@ describe("An address", () => {
 
                 it("because of zipcode (" + invalidZipCode + ")", () => {
                     expect(toHtml(validCity, invalidZipCode)).to
-                        .match(/<p>.*<\/p>/)
                         .not.contains(invalidZipCode);
                 });
             }
             it("because of both", () => {
                 expect(toHtml("P4ris", "75O17")).to
-                    .match(/<p>.*<\/p>/)
                     .not.contains("P4ris")
                     .not.contains("75O17");
             });
