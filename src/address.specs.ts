@@ -15,7 +15,6 @@ describe("An address", () => {
             for (const invalidCity of [
                 "Paris 13",
                 "P4ris",
-                null,
             ]) {
 
                 it("because of city (" + invalidCity + ")", () => {
