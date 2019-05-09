@@ -32,11 +32,15 @@ function format(zipcode: ZipCode, city: City): string {
     return `${zipcode} ${city}`;
 }
 
+function todo(reason: string): never {
+    throw new Error(`TODO : ${reason}`);
+}
+
 function toHtml(city: string, zipcode: string): string {
     try {
         return `<p>${format(new ZipCode(zipcode), new City(city))}</p>`;
     } catch (e) {
-        return "";
+        return todo("give a nice error message");
     }
 }
 
