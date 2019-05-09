@@ -2,6 +2,9 @@ class ZipCode {
     private readonly value: string;
 
     constructor(value: string) {
+        if (!/^[0-9]{5}$/.test(value)) {
+            throw new Error("wrong zipcode value");
+        }
         this.value = value;
     }
 
@@ -14,6 +17,9 @@ class City {
     private readonly value: string;
 
     constructor(value: string) {
+        if (/[0-9]/.test(value)) {
+            throw new Error("Wrong city");
+        }
         this.value = value;
     }
 
@@ -26,16 +32,12 @@ function format(zipcode: ZipCode, city: City): string {
     return `${zipcode} ${city}`;
 }
 
-function validate(city: string, zipcode: string): boolean {
-    return !/[0-9]/.test(city)
-        && /^[0-9]{5}$/.test(zipcode);
-}
-
 function toHtml(city: string, zipcode: string): string {
-    if (validate(city, zipcode)) {
-        return `<p>${format(new ZipCode(city), new City(zipcode))}</p>`;
+    try {
+        return `<p>${format(new ZipCode(zipcode), new City(city))}</p>`;
+    } catch (e) {
+        return "";
     }
-    return "";
 }
 
 export {toHtml};
