@@ -1,10 +1,29 @@
+type ErrorMessage = string;
+
+function isError<A>(value: A | ErrorMessage): value is ErrorMessage {
+    return typeof value === "string";
+}
+
+function isOk<A>(value: A | ErrorMessage): value is A {
+    return !isError(value);
+}
+
+function errors(...values: any | ErrorMessage): ErrorMessage {
+    return values.filter(isError).join("\n");
+}
+
 class ZipCode {
+
+    public static newZipCode(value: string): ZipCode | ErrorMessage {
+        if (!/^[0-9]{5}$/.test(value)) {
+            return "wrong zipcode value";
+        }
+        return new ZipCode(value);
+    }
+
     private readonly value: string;
 
-    constructor(value: string) {
-        if (!/^[0-9]{5}$/.test(value)) {
-            throw new Error("wrong zipcode value");
-        }
+    private constructor(value: string) {
         this.value = value;
     }
 
@@ -14,12 +33,16 @@ class ZipCode {
 }
 
 class City {
+    public static newCity(value: string): City | ErrorMessage {
+        if (/[0-9]/.test(value)) {
+            return "Wrong city value";
+        }
+        return new City(value);
+    }
+
     private readonly value: string;
 
-    constructor(value: string) {
-        if (/[0-9]/.test(value)) {
-            throw new Error("Wrong city");
-        }
+    private constructor(value: string) {
         this.value = value;
     }
 
@@ -37,11 +60,12 @@ function todo(reason: string): never {
 }
 
 function toHtml(city: string, zipcode: string): string {
-    try {
-        return `<p>${format(new ZipCode(zipcode), new City(city))}</p>`;
-    } catch (e) {
-        return todo("give a nice error message");
+    const checkedZipCode = ZipCode.newZipCode(zipcode);
+    const checkedCity = City.newCity(city);
+    if (isOk(checkedZipCode) && isOk(checkedCity)) {
+        return `<p>${format(checkedZipCode, checkedCity)}</p>`;
     }
+    return errors(checkedCity, checkedZipCode);
 }
 
 export {toHtml};
