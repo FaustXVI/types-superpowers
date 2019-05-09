@@ -4,7 +4,7 @@ function format(zipcode, city) {
 
 function validate(city, zipcode) {
     return typeof city === "string" && !/[0-9]/.test(city)
-        && /^[0-9]{5}$/.test(zipcode);
+        && typeof zipcode === "string" && /^[0-9]{5}$/.test(zipcode);
 }
 
 function toHtml(city, zipcode) {
