@@ -28,6 +28,7 @@ describe("An address", () => {
                 "7501",
                 "750190",
                 "75O19",
+                12345, //02134
             ]) {
 
                 it("because of zipcode (" + invalidZipCode + ")", () => {
