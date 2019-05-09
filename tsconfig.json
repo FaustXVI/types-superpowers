@@ -6,7 +6,7 @@
     "outDir": "./out",
     "allowJs" : true,
     "strict": true,
-    "noImplicitAny":false,
+    "noImplicitAny":true,
     "strictNullChecks": false
   },
   "include": ["src"],
