@@ -9,8 +9,7 @@ function isOk<A>(value: A | ErrorMessage): value is A {
 }
 
 function errors(...values: any | ErrorMessage): ErrorMessage {
-    return values.filter(isError)
-        .join("\n");
+    return values.filter(isError).join("\n");
 }
 
 class ZipCode {
@@ -18,9 +17,8 @@ class ZipCode {
     public static newZipCode(value: string): ZipCode | ErrorMessage {
         if (!/^[0-9]{5}$/.test(value)) {
             return "wrong zipcode value";
-        } else {
-            return new ZipCode(value);
         }
+        return new ZipCode(value);
     }
 
     private readonly value: string;
@@ -38,9 +36,8 @@ class City {
     public static newCity(value: string): City | ErrorMessage {
         if (/[0-9]/.test(value)) {
             return "Wrong city value";
-        } else {
-            return new City(value);
         }
+        return new City(value);
     }
 
     private readonly value: string;
