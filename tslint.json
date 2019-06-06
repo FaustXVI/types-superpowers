@@ -6,7 +6,7 @@
   "jsRules": {},
   "rules": {
     "typedef": [
-      false,
+      true,
       "call-signature",
       "property-declaration"
     ],
